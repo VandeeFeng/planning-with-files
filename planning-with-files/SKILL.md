@@ -5,13 +5,15 @@ description: Transforms workflow to use Manus-style persistent markdown files fo
 
 # Planning with Files
 
+**File Location**: All generated markdown files should be created in the project root directory's `MemoryMD` folder.
+
 Work like Manus: Use persistent markdown files as your "working memory on disk."
 
 ## Quick Start
 
 Before ANY complex task:
 
-1. **Create `task_plan.md`** in the working directory
+1. **Create `task_plan.md`** in the working directory's `MemoryMD` folder
 2. **Define phases** with checkboxes
 3. **Update after each phase** - mark [x] and change status
 4. **Read before deciding** - refresh goals in attention window
@@ -22,7 +24,7 @@ For every non-trivial task, create THREE files:
 
 | File | Purpose | When to Update |
 |------|---------|----------------|
-| `task_plan.md` | Track phases and progress | After each phase |
+| `task_plan.md` | Track phases, progress, and sessions | After each phase + after each session |
 | `notes.md` | Store findings and research | During research |
 | `[deliverable].md` | Final output | At completion |
 
@@ -32,7 +34,8 @@ For every non-trivial task, create THREE files:
 Loop 1: Create task_plan.md with goal and phases
 Loop 2: Research → save to notes.md → update task_plan.md
 Loop 3: Read notes.md → create deliverable → update task_plan.md
-Loop 4: Deliver final output
+Loop 4: Log session ID and title to task_plan.md for cross-session reference
+Loop 5: Deliver final output
 ```
 
 ### The Loop in Detail
@@ -50,6 +53,11 @@ Edit task_plan.md  # Mark [x], update status
 **When storing information:**
 ```bash
 Write notes.md     # Don't stuff context, store in file
+```
+
+**After each session:**
+```bash
+Add session ID and title to task_plan.md  # Track sessions for reference
 ```
 
 ## task_plan.md Template
@@ -80,6 +88,10 @@ Create this file FIRST for any complex task:
 
 ## Status
 **Currently in Phase X** - [What I'm doing now]
+
+## Sessions
+- **Session 1** (YYYY-MM-DD): [session title 1] - `[sessionID]`
+- **Session 2** (YYYY-MM-DD): [session title 2] - `[sessionID]`
 ```
 
 ## notes.md Template
@@ -123,6 +135,13 @@ Large outputs go to files, not context. Keep only paths in working memory.
 
 ### 5. Log All Errors
 Every error goes in the "Errors Encountered" section. This builds knowledge for future tasks.
+
+### 6. Track Sessions
+After each session, add the session ID and session title to `task_plan.md`. Sessions are stored locally in `~/.local/share/opencode/storage/` and can be read by agents using the Read tool:
+
+- **Session metadata** (includes `title` field for session title): `~/.local/share/opencode/storage/session/global/ses_{sessionID}.json`
+- **Messages**: `~/.local/share/opencode/storage/message/ses_{sessionID}/msg_{messageID}.json`
+- **Message content**: `~/.local/share/opencode/storage/part/msg_{messageID}/prt_{partID}.json`
 
 ## When to Use This Pattern
 
