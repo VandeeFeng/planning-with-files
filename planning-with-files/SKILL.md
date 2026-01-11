@@ -24,7 +24,7 @@ For every non-trivial task, create THREE files:
 
 | File | Purpose | When to Update |
 |------|---------|----------------|
-| `task_plan.md` | Track phases, progress, and sessions | After each phase + after each session |
+| `task_plan.md` | Track phases and progress| After each phase|
 | `notes.md` | Store findings and research | During research |
 | `[deliverable].md` | Final output | At completion |
 
@@ -34,8 +34,8 @@ For every non-trivial task, create THREE files:
 Loop 1: Create task_plan.md with goal and phases
 Loop 2: Research → save to notes.md → update task_plan.md
 Loop 3: Read notes.md → create deliverable → update task_plan.md
-Loop 4: Log session ID and title to task_plan.md for cross-session reference
-Loop 5: Deliver final output
+Loop 4: Deliver final output
+Loop 5: Get session ID, session title -> summarize the session -> add to task_plan.md
 ```
 
 ### The Loop in Detail
@@ -53,11 +53,6 @@ Edit task_plan.md  # Mark [x], update status
 **When storing information:**
 ```bash
 Write notes.md     # Don't stuff context, store in file
-```
-
-**After each session:**
-```bash
-Add session ID and title to task_plan.md  # Track sessions for reference
 ```
 
 ## task_plan.md Template
@@ -90,8 +85,10 @@ Create this file FIRST for any complex task:
 **Currently in Phase X** - [What I'm doing now]
 
 ## Sessions
-- **Session 1** (YYYY-MM-DD): [session title 1] - `[sessionID]`
-- **Session 2** (YYYY-MM-DD): [session title 2] - `[sessionID]`
+### **Session 1** (YYYY-MM-DD): [session title] - `[sessionID]`
+[Session logs here]
+### **Session 2** (YYYY-MM-DD): [session title] - `[sessionID]`
+[Session logs here]
 ```
 
 ## notes.md Template
@@ -137,11 +134,13 @@ Large outputs go to files, not context. Keep only paths in working memory.
 Every error goes in the "Errors Encountered" section. This builds knowledge for future tasks.
 
 ### 6. Track Sessions
-After each session, add the session ID and session title to `task_plan.md`. Sessions are stored locally in `~/.local/share/opencode/storage/` and can be read by agents using the Read tool:
+Sessions are stored locally in `~/.local/share/opencode/storage/`:
 
 - **Session metadata** (includes `title` field for session title): `~/.local/share/opencode/storage/session/global/ses_{sessionID}.json`
 - **Messages**: `~/.local/share/opencode/storage/message/ses_{sessionID}/msg_{messageID}.json`
 - **Message content**: `~/.local/share/opencode/storage/part/msg_{messageID}/prt_{partID}.json`
+
+After [deliverable].md is done, get current conversion's session ID, session title -> summarize the session briefly -> add to task_plan.md's session section，or when the user ask you to.
 
 ## When to Use This Pattern
 
